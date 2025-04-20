@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Find Your Next Car</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-white shadow-md py-6 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-3xl font-bold">Find Your Next Car</h1>
+      <p class="mt-2 text-gray-600">Tell us what you're looking for and we'll find the perfect match</p>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto mt-10 px-4">
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="bg-white shadow-md rounded-lg p-6 space-y-4">
+      <div>
+        <label class="block font-semibold">Make & Model</label>
+        <input type="text" name="make_model" required class="w-full p-2 border rounded" placeholder="e.g. Honda Accord"/>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <label class="block font-semibold">Min Year</label>
+          <input type="number" name="min_year" min="1990" class="w-full p-2 border rounded" />
+        </div>
+        <div class="flex-1">
+          <label class="block font-semibold">Max Year</label>
+          <input type="number" name="max_year" max="2025" class="w-full p-2 border rounded" />
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <label class="block font-semibold">Min Budget</label>
+          <input type="number" name="min_budget" class="w-full p-2 border rounded" />
+        </div>
+        <div class="flex-1">
+          <label class="block font-semibold">Max Budget</label>
+          <input type="number" name="max_budget" class="w-full p-2 border rounded" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-semibold">Color Preferences</label>
+        <input type="text" name="colors" class="w-full p-2 border rounded" placeholder="e.g. Black, White, Red" />
+      </div>
+
+      <div>
+        <label class="block font-semibold">Must-have Features</label>
+        <input type="text" name="features" class="w-full p-2 border rounded" placeholder="e.g. Sunroof, AWD, Leather" />
+      </div>
+
+      <div>
+        <label class="block font-semibold">Are you open to auction purchases?</label>
+        <select name="auction_ok" class="w-full p-2 border rounded">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="Maybe">Maybe</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold">Your Name</label>
+        <input type="text" name="name" class="w-full p-2 border rounded" required />
+      </div>
+
+      <div>
+        <label class="block font-semibold">Phone / Email</label>
+        <input type="text" name="contact" class="w-full p-2 border rounded" required />
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold">
+        Submit Request
+      </button>
+    </form>
+  </main>
+
+  <footer class="mt-10 py-4 text-center text-gray-500 text-sm">
+    &copy; 2025 Your Car Biz Name. All rights reserved.
+  </footer>
+</body>
+</html>
 
