@@ -1,0 +1,365 @@
+
+
+/*
+ * GENERAL STYLES & RESETS
+ * ----------------------------------------------------
+ * Applies to all elements and sets up fundamental typography and box model.
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures consistent sizing including padding and border */
+    font-family: 'Poppins', sans-serif; /* Specifies the primary font */
+}
+
+body {
+    background-color: #1a1a2e; /* Deeper, rich dark background for a modern feel */
+    color: #e0e0e0; /* Light off-white for body text */
+    display: flex; /* Enables flexbox for centering content */
+    justify-content: center; /* Horizontally centers content */
+    align-items: center; /* Vertically centers content */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    margin: 0; /* Removes default body margin */
+    overflow: hidden; /* Prevents scrollbars if background animation goes slightly out of bounds */
+    position: relative; /* Needed for absolute positioning of background */
+    padding: 20px; /* Adds padding on smaller screens to prevent content from touching edges */
+}
+
+/*
+ * BACKGROUND ANIMATION
+ * ----------------------------------------------------
+ * Creates a subtle, animated background effect.
+ */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* radial-gradient: Creates a soft, circular light source effect */
+    background: radial-gradient(circle at center, rgba(30, 30, 46, 0.8), #121212 95%);
+    z-index: -1; /* Puts background behind other content */
+    animation: backgroundAnimation 20s infinite alternate ease-in-out; /* Animates background position */
+}
+
+/* Keyframe for the background animation: shifts the gradient origin */
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/*
+ * FORM CONTAINER STYLING
+ * ----------------------------------------------------
+ * Defines the main visual appearance of the form box.
+ */
+.form-container {
+    background: rgba(45, 45, 60, 0.98); /* Slightly lighter dark background for form, semi-transparent */
+    padding: 2.5rem; /* Generous padding inside the container */
+    border-radius: 18px; /* Smoothly rounded corners */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7); /* Strong, deep shadow for a floating effect */
+    max-width: 450px; /* Maximum width for the form */
+    width: 90%; /* Responsive width, taking 90% of parent width */
+    transition: all 0.5s ease-in-out; /* Smooth transitions for any property changes */
+    position: relative; /* Needed for z-index and potential child positioning */
+    z-index: 1; /* Ensures form is above the background */
+    border: 1px solid rgba(70, 70, 85, 0.5); /* Subtle, translucent border */
+    backdrop-filter: blur(5px); /* Optional: Adds a subtle blur effect behind the form content */
+}
+
+.form-container h2 {
+    margin-bottom: 1.5rem; /* Space below the main heading */
+    text-align: center; /* Centers the heading text */
+    color: #e0e0e0; /* Color for the heading */
+    font-size: 2rem; /* Large heading size */
+    letter-spacing: 0.5px; /* Slight letter spacing for aesthetics */
+    font-weight: 700; /* Bolder heading */
+}
+
+/*
+ * FORM ELEMENTS: INPUTS, TEXTAREAS, LABELS
+ * ----------------------------------------------------
+ * Styles for interactive form components.
+ */
+.form-container input,
+.form-container textarea, /* Added textarea for consistency */
+.form-container button {
+    width: 100%; /* Makes elements take full width of container */
+    margin-bottom: 1.2rem; /* Consistent bottom margin */
+    padding: 1rem; /* Generous internal spacing */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 10px; /* Rounded corners for inputs/buttons */
+    background: #2a2a3e; /* Dark background for input fields */
+    color: #e0e0e0; /* Light text color for input values */
+    outline: none; /* Removes default focus outline */
+    font-size: 1.1rem; /* Larger font size for readability */
+    transition: all 0.3s ease; /* Smooth transitions for hover/focus effects */
+}
+
+.form-container input::placeholder,
+.form-container textarea::placeholder { /* Style for placeholder text */
+    color: #a0a0a0; /* Lighter grey for placeholder */
+    opacity: 0.8; /* Slightly less opaque */
+}
+
+.form-container input:focus,
+.form-container textarea:focus { /* Styles when input/textarea is focused */
+    border-color: #03dac5; /* Highlight border with accent color */
+    box-shadow: 0 0 8px rgba(3, 218, 197, 0.5); /* Soft glow effect */
+    background-color: #2c2c42; /* Slightly lighter background on focus */
+}
+
+.form-container label {
+    font-size: 1.05rem; /* Slightly larger label font */
+    margin-bottom: 0.6rem; /* Space below labels */
+    display: block; /* Makes label take full width and new line */
+    color: #c0c0c0; /* Lighter grey for labels */
+    font-weight: 600; /* Slightly bolder labels */
+}
+
+/*
+ * BUTTON STYLING
+ * ----------------------------------------------------
+ * Styles for the form action buttons.
+ */
+.form-container button {
+    background-color: #03dac5; /* Primary accent color */
+    color: #1a1a2e; /* Dark text for high contrast on accent button */
+    cursor: pointer; /* Indicates interactivity */
+    font-weight: 700; /* Bold text */
+    letter-spacing: 0.5px; /* Slight letter spacing */
+    margin-top: 0.5rem; /* Space above buttons */
+    box-shadow: 0 4px 10px rgba(3, 218, 197, 0.3); /* Button shadow */
+    border: none; /* Remove border for buttons */
+}
+
+.form-container button:hover {
+    background-color: #028f8a; /* Darker accent on hover */
+    box-shadow: 0 6px 15px rgba(2, 143, 138, 0.4); /* Enhanced shadow on hover */
+    transform: translateY(-2px); /* Subtle lift animation */
+}
+
+/*
+ * ERROR MESSAGES
+ * ----------------------------------------------------
+ * Styling for validation error messages.
+ */
+.error-message {
+    color: #ff6b6b; /* Reddish color for error */
+    font-size: 0.95rem; /* Slightly larger error text */
+    margin-top: -1rem; /* Pulls error message closer to input */
+    margin-bottom: 1rem; /* Space below error message */
+    padding-left: 5px; /* Small indent for readability */
+    height: 1.2em; /* Ensures consistent height to prevent layout jumps */
+}
+
+.input-error { /* Class added to input fields with validation errors */
+    border-color: #ff6b6b !important; /* Forces red border on error */
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5); /* Red glow on error */
+}
+
+
+/*
+ * BUTTON CONTAINER
+ * ----------------------------------------------------
+ * Arranges "Back" and "Next" buttons side-by-side.
+ */
+.button-container {
+    display: flex; /* Enables flexbox for button arrangement */
+    justify-content: space-between; /* Pushes buttons to ends */
+    gap: 15px; /* Space between buttons */
+    margin-top: 1rem; /* Space above the button container */
+}
+
+.button-container button {
+    flex: 1; /* Makes each button take equal space */
+    margin-bottom: 0; /* Overrides default button margin */
+}
+
+.button-container button:first-child { /* Specific style for the "Back" button */
+    background-color: #555; /* Dark grey for "Back" button */
+    color: #e0e0e0; /* Light text for "Back" button */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-container button:first-child:hover {
+    background-color: #777; /* Lighter grey on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/*
+ * FADE ANIMATION FOR STEPS
+ * ----------------------------------------------------
+ * Provides a smooth transition when switching form steps.
+ */
+.fade {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out; /* Smooth opacity transition */
+}
+
+.fade.hide {
+    opacity: 0; /* Hides the element by making it transparent */
+}
+
+/*
+ * PROGRESS BAR
+ * ----------------------------------------------------
+ * Visual indicator of form completion.
+ */
+.progress-bar-container {
+    width: 100%; /* Full width */
+    background-color: #333; /* Dark background for the bar track */
+    border-radius: 5px; /* Rounded ends */
+    height: 8px; /* Height of the progress bar */
+    margin-bottom: 1.5rem; /* Space below the progress bar */
+    overflow: hidden; /* Ensures the fill stays within rounded corners */
+}
+
+.progress-bar-fill {
+    height: 100%; /* Fills the height of its container */
+    width: 0%; /* Starts at 0% width */
+    background-color: #03dac5; /* Accent color for the progress fill */
+    border-radius: 5px; /* Rounded ends for the fill */
+    transition: width 0.4s ease-in-out; /* Smooth animation for width changes */
+}
+
+/*
+ * THANK YOU MESSAGE
+ * ----------------------------------------------------
+ * Styling for the final confirmation screen.
+ */
+.thank-you-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.thank-you-message h3 {
+    color: #03dac5;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.thank-you-message p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/*
+ * RESPONSIVENESS
+ * ----------------------------------------------------
+ * Adjusts styles for smaller screens.
+ */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 1.5rem; /* Reduce padding on smaller screens */
+    }
+
+    .form-container h2 {
+        font-size: 1.8rem; /* Smaller heading on small screens */
+    }
+
+    .form-container input,
+    .form-container textarea,
+    .form-container button {
+        padding: 0.8rem; /* Slightly smaller padding for inputs/buttons */
+        font-size: 1rem; /* Smaller font size */
+    }
+
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically on very small screens */
+        gap: 10px; /* Reduce gap */
+    }
+}
+
+/*
+ * FOOTER STYLING
+ * ----------------------------------------------------
+ * Styles for the compact site footer.
+ */
+.site-footer {
+    position: absolute; /* Positions the footer at the very bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px; /* Some padding for spacing */
+    background: rgba(30, 30, 40, 0.6); /* Slightly darker, semi-transparent background */
+    color: #a0a0a0; /* Lighter grey for footer text */
+    font-size: 0.9rem; /* Smaller font size for subtlety */
+    text-align: center; /* Centers all content */
+    z-index: 0; /* Keeps it behind the form but above the main background */
+    backdrop-filter: blur(3px); /* Subtle blur for the footer as well */
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap; /* Allows content to wrap on smaller screens */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;
+    gap: 10px; /* Space between footer items */
+}
+
+.site-footer p {
+    margin: 0; /* Remove default paragraph margin */
+}
+
+.footer-links a,
+.help-prompt a,
+.social-icons a {
+    color: #03dac5; /* Your accent color for links */
+    text-decoration: none; /* No underline by default */
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.footer-links a:hover,
+.help-prompt a:hover,
+.social-icons a:hover {
+    color: #028f8a; /* Darker accent on hover */
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.footer-links .separator {
+    color: #777; /* Color for the separator */
+    margin: 0 5px; /* Space around the separator */
+}
+
+.social-icons a {
+    font-size: 1rem; /* Adjust font size for social icons (if text-based) */
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+/*
+ * HELP PROMPT STYLING
+ * ----------------------------------------------------
+ * Styles for the subtle "Need Help?" message.
+ */
+.help-prompt {
+    text-align: center;
+    color: #c0c0c0;
+    font-size: 0.95rem;
+    margin-top: 20px; /* Space between form and prompt */
+    padding-bottom: 5px; /* Small padding at bottom */
+}
+
+/*
+ * RESPONSIVENESS FOR NEW ADDITIONS
+ * ----------------------------------------------------
+ */
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 10px 15px; /* Reduce footer padding on very small screens */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer content vertically */
+        gap: 5px; /* Reduce gap */
+    }
+
+    .footer-links .separator {
+        display: none; /* Hide separators when links stack */
+    }
+
+    .help-prompt {
+        margin-top: 15px;
+    }
+}
